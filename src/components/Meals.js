@@ -12,7 +12,7 @@ const Meals = () => {
                     throw new Error("Failed to fetch meals data");
                 }
                 const data = await response.json();
-                setMeals(data); // Salvestame andmed seisundisse
+                setMeals(data); 
             } catch (error) {
                 console.error("Error fetching meals:", error);
             }
