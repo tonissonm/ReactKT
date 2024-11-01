@@ -18,7 +18,7 @@ const MealItem = (props) => {
                     <p className="meal-item-description"> {props.meal.description}</p>
                 </div>
                 <div className="meal-item-actions">
-                    <Button className="button" onClick={() => addToCart(props.meal)}>Add to Cart</Button>
+                    <Button textOnly={false} onClick={() => addToCart(props.meal)}>Add to Cart</Button>
                 </div>
             </article>
         </li>

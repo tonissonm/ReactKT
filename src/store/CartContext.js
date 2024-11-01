@@ -1,24 +1,28 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext,useReducer,useEffect } from "react";
+import cartReducer from "./CartReducer";
 const CartContext = createContext();
-export const CartProvider =({children})=>{
-    const [cartItems,setCartItems] = useState([]);
-    const addToCart=(meal)=>{
-        setCartItems((prevItems) => {
-            const updatedItems = [...prevItems, meal];
-            console.log("Cart items after adding:", updatedItems);
-            return updatedItems;
-        });
-        
+
+const initialState = {
+    items: []
+};
+
+export const CartProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(cartReducer, initialState); 
+
+    const addToCart = (meal) => {
+        dispatch({ type: 'ADD_ITEM', payload: meal });
     };
-    const removeFromCart = (mealId) => {
-        setCartItems((prevItems) => prevItems.filter(item => item.id !== mealId));
-    };
-    return(
-        <CartContext.Provider value={{cartItems,addToCart,removeFromCart}}>
+    useEffect(() => {
+        console.log("card items", state.items); 
+    }, [state.items]);
+
+    return (
+        <CartContext.Provider value={{ cartItems: state.items, addToCart }}>
             {children}
         </CartContext.Provider>
-    )
+    );
 };
-export const useCart =()=>{
+
+export const useCart = () => {
     return useContext(CartContext);
-}
+};

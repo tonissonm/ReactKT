@@ -1,7 +1,10 @@
 import logo from '../assets/logo.jpg'
+import Button from './UI/Button';
 import { useCart } from "../store/CartContext";
+
 const Header = () => {
     const { cartItems } = useCart();
+    const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
     return (
         <header id="main-header">
             <div id="title">
@@ -9,7 +12,7 @@ const Header = () => {
                 <h1>React Food Order App</h1>
             </div>
             <nav>
-            <button className='text-button' onClick={()=>console.log({cartItems})}>Cart ({cartItems.length})</button>
+            <Button textOnly={true} onClick={()=>console.log({cartItems})}>Cart ({totalQuantity})</Button>
             </nav>
         </header>
     )
