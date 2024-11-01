@@ -14,12 +14,12 @@ const MealItem = (props) => {
                     <p className="meal-item-description"> {props.meal.description}</p>
                 </div>
                 <div className="meal-item-actions">
-                    <button>Add to Cart</button>
+                    <button className="button">Add to Cart</button>
                 </div>
             </article>
         </li>
         
     )
 }
-/* className="button"*/ 
+
 export default MealItem
